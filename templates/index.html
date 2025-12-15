@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Vrooom Rentals</title>
+    <link rel="stylesheet" href="/static/style.css"> <!-- Link to external CSS -->
+</head>
+<body>
+
+    <!-- ✅ Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>Vrooom Rentals</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            {% if 'user_id' in session %}
+                <button class="btn logout-btn" onclick="logout()">Logout</button>
+            {% else %}
+                <a href="/login" class="btn login-btn">Login</a>
+                <a href="/register" class="btn signup-btn">Sign Up</a>
+            {% endif %}
+
+            <!-- ✅ Admin Login Button -->
+            {% if 'admin' not in session %}
+                <a href="/admin_login" class="btn admin-btn">Admin Login</a>
+            {% else %}
+                <a href="/admin_dashboard" class="btn admin-btn">Admin Dashboard</a>
+                <a href="/admin_logout" class="btn logout-btn">Logout</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- ✅ Hero Section -->
+    <header class="hero">
+        <h2>Need a Ride? We've Got the Right Car for You!</h2>
+        <p>Flexible rentals for city drives, road trips, and business travel.</p>
+    </header>
+
+    <!-- ✅ Call-To-Action: Get Started -->
+    <section class="cta-section">
+        <h2>Get Started with Vrooom Rentals!</h2>
+        <p>Click below to explore our wide range of cars and book your ride hassle-free.</p>
+        <a href="/view_cars" class="btn cta-btn">View Available Cars</a>
+    </section>
+
+    <!-- ✅ Why Choose Us? -->
+    <section class="why-choose-us">
+        <h2>Why Choose Us?</h2>
+        <div class="features">
+            <div class="feature">
+                <img src="/static/icons/affordable.png" alt="Affordable Prices">
+                <h3>Affordable Pricing</h3>
+                <p>Best rental prices with zero hidden fees.</p>
+            </div>
+            <div class="feature">
+                <img src="/static/icons/easy_booking.png" alt="Easy Booking">
+                <h3>Easy Booking</h3>
+                <p>Quick & hassle-free booking process.</p>
+            </div>
+            <div class="feature">
+                <img src="/static/icons/variety.png" alt="Wide Variety">
+                <h3>Wide Variety</h3>
+                <p>From economy to luxury, we have it all.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ Our Locations -->
+    <section class="locations">
+        <h2>We are available in 10+ locations across Bengaluru!</h2>
+        <p>Find us in:</p>
+        <ul class="location-list">
+            <li>📍 Indiranagar</li>
+            <li>📍 Koramangala</li>
+            <li>📍 Electronic City</li>
+            <li>📍 Whitefield</li>
+            <li>📍 Jayanagar</li>
+            <li>📍 JP Nagar</li>
+            <li>📍 Basavanagudi</li>
+            <li>📍 Marathahalli</li>
+            <li>📍 Yeshwanthpur</li>
+            <li>📍 Malleshwaram</li>
+            <li>📍 Banashankari</li>
+            <li>📍 Rajajinagar</li>
+        </ul>
+    </section>
+
+    <!-- ✅ Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>Vrooom Rentals</h3>
+                <p>Providing the best car rental services across Bengaluru. Hassle-free booking, affordable prices, and excellent customer service.</p>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p>Email: support@carrental.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Address: MG Road, Bengaluru</p>
+            </div>
+            <div class="footer-section quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/login">Login</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Vrooom Rentals. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ✅ Logout Function
+        function logout() {
+            fetch('/logout').then(() => {
+                window.location.href = '/';
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Vrooom Rentals</title>
+    
+    <style>
+        /* ✅ General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* ✅ Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50;
+            padding: 15px 50px;
+            color: white;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-buttons .btn {
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+        }
+
+        .login-btn {
+            background: #3498db;
+            color: white;
+        }
+
+        .signup-btn {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .auth-buttons .btn:hover {
+            opacity: 0.8;
+        }
+
+        /* ✅ About Section */
+        .about-container {
+            text-align: center;
+            padding: 50px;
+            background-color: #ffffff;
+        }
+
+        .about-container h2 {
+            color: #2c3e50;
+            font-size: 2.2em;
+        }
+
+        .about-container p {
+            font-size: 1.2em;
+            color: #555;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* ✅ Our Services */
+        .services {
+            text-align: center;
+            padding: 50px;
+            background: #ecf0f1;
+        }
+
+        .services h2 {
+            color: #2c3e50;
+        }
+
+        .services-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .service-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-item img {
+            width: 60px;
+        }
+
+        .service-item h3 {
+            color: #e67e22;
+        }
+
+        /* ✅ Customer Testimonials */
+        .testimonials {
+            text-align: center;
+            padding: 50px;
+            background: #ffffff;
+        }
+
+        .testimonial-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .testimonial-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-item h4 {
+            color: #3498db;
+        }
+
+        /* ✅ Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            width: 30%;
+        }
+
+        .footer-section h3 {
+            color: #f39c12;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            padding: 5px 0;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid #f39c12;
+            padding-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- ✅ Navigation Bar -->
+    <nav class="navbar">
+    <div class="logo">
+        <h1>Vrooom Rentals</h1>
+    </div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="auth-buttons">
+        {% if 'user_id' in session %}
+            <button class="btn logout-btn" onclick="logout()">Logout</button>
+        {% else %}
+            <a href="/login" class="btn login-btn">Login</a>
+            <a href="/register" class="btn signup-btn">Sign Up</a>
+        {% endif %}
+
+     
+    </div>
+</nav>
+
+<script>
+    // ✅ Logout Function
+    function logout() {
+        fetch('/logout').then(() => {
+            window.location.href = '/';
+        });
+    }
+</script>
+
+    <!-- ✅ About Section -->
+    <section class="about-container">
+        <h2>About Vrooom Rentals</h2>
+        <p>
+            At Vrooom Rentals, we provide a seamless car rental experience with 
+            affordable pricing, a wide range of cars, and 24/7 support. Whether you need a car for a 
+            road trip, daily commute, or business travel, we’ve got the perfect ride for you.
+        </p>
+    </section>
+
+    <!-- ✅ Our Services -->
+    <section class="services">
+        <h2>Why Choose Vrooom Rentals?</h2>
+        <div class="services-list">
+            <div class="service-item">
+                <h3>Affordable Pricing</h3>
+                <p>No hidden charges. Get the best rental rates.</p>
+            </div>
+            <div class="service-item">
+                <h3>Easy Booking</h3>
+                <p>Book your car in just a few clicks.</p>
+            </div>
+            <div class="service-item">
+                <h3>24/7 Support</h3>
+                <p>We’re here to assist you anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ Customer Testimonials -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-list">
+            <div class="testimonial-item">
+                <p>"Vrooom Rentals made my trip hassle-free! Booking was easy, and the car was in great condition."</p>
+                <h4>- Rajesh Kumar</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Great customer service and a smooth rental process. Highly recommend!"</p>
+                <h4>- Priya Sharma</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Vrooom Rentals</h3>
+                <p>Reliable car rentals at the best prices.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: support@vrooomrentals.com</p>
+                <p>Phone: +91 98765 43210</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Vrooom Rentals. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

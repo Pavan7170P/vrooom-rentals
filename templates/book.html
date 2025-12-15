@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Car - {{ car.name }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script>
+        function calculateTotal() {
+            let days = document.getElementById("days").value;
+            let pricePerDay = {{ car.price_per_day }};
+            
+            if (days < 1 || isNaN(days)) {
+                document.getElementById("total").innerText = "Total Amount: ₹0";
+                document.getElementById("amount").value = 0;
+                return;
+            }
+
+            let totalAmount = days * pricePerDay;
+            document.getElementById("total").innerText = "Total Amount: ₹" + totalAmount;
+            document.getElementById("amount").value = totalAmount;  // Store total in hidden input
+        }
+    </script>
+    <style>
+        /* ✅ General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* ✅ Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50;
+            padding: 15px 50px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-buttons .btn {
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .auth-buttons .btn:hover {
+            background: #c0392b;
+        }
+
+        /* ✅ Booking Section */
+        .booking-section {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            margin: 40px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding-top: 80px; /* ✅ Fix navbar overlap issue */
+        }
+
+        .booking-section h2 {
+            color: #2c3e50;
+        }
+
+        .booking-section img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        /* ✅ Form Styling */
+        .booking-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .booking-section label {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .booking-section input,
+        .booking-section select {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .booking-section input:focus,
+        .booking-section select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+        /* ✅ Total Amount Display */
+        #total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        /* ✅ Confirm Booking Button */
+        .booking-section .btn {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        .booking-section .btn:hover {
+            background: #2980b9;
+        }
+
+        /* ✅ Responsive Design */
+        @media (max-width: 768px) {
+            .booking-section {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ✅ Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>Vrooom Rentals</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <button class="btn logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <!-- ✅ Booking Form -->
+    <section class="booking-section">
+        <h2>Booking for {{ car.name }}</h2>
+        <img src="{{ car.image_url }}" alt="{{ car.name }}" width="300">
+        <p>Price per day: ₹{{ car.price_per_day }}</p>
+
+        <form action="/confirm_booking" method="POST">
+            <input type="hidden" name="car_id" value="{{ car.id }}">
+
+            <label for="days">Number of Days:</label>
+            <input type="number" id="days" name="days" min="1" required oninput="calculateTotal()">
+
+            <label for="amount">Total Price:</label>
+            <input type="text" id="amount" name="amount" value="{{ car.price_per_day }}" readonly>
+            <p id="total">Total Amount: ₹{{ car.price_per_day }}</p>
+
+            <!-- ✅ Location Dropdown -->
+            <label for="location">Pickup Location:</label>
+            <select name="location" required>
+                <option value="Indiranagar">Indiranagar</option>
+                <option value="Koramangala">Koramangala</option>
+                <option value="Electronic City">Electronic City</option>
+                <option value="Whitefield">Whitefield</option>
+                <option value="Jayanagar">Jayanagar</option>
+                <option value="JP Nagar">JP Nagar</option>
+                <option value="Basavanagudi">Basavanagudi</option>
+                <option value="Marathahalli">Marathahalli</option>
+                <option value="Yeshwanthpur">Yeshwanthpur</option>
+                <option value="Malleshwaram">Malleshwaram</option>
+                <option value="Banashankari">Banashankari</option>
+                <option value="Rajajinagar">Rajajinagar</option>
+            </select>
+
+            <label for="payment_method">Payment Method:</label>
+            <select name="payment_method">
+                <option value="Pay at Location">Pay at Location</option>
+            </select>
+
+            <button type="submit" class="btn">Confirm Booking</button>
+        </form>
+    </section>
+
+    <script>
+        function logout() {
+            fetch('/logout').then(() => {
+                window.location.href = '/';
+            });
+        }
+    </script>
+
+</body>
+</html>

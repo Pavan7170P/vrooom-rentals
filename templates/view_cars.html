@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cars - Vrooom Rentals</title>
+    
+    <style>
+        /* ✅ Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        /* ✅ Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px 20px;
+        }
+
+        .navbar .logo h1 {
+            color: white;
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* ✅ Cars Section */
+        .cars-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cars-section h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .car-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .car {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 250px;
+        }
+
+        .car img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .car h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .car p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* ✅ Book Now Button */
+        .book-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .book-btn:hover {
+            background-color: #218838;
+        }
+
+        /* ✅ Unavailable Cars Styling */
+        .unavailable {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .unavailable p {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- ✅ Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>Vrooom Rentals</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/view_cars">View Cars</a></li> <!-- New Menu Item -->
+        </ul>
+    </nav>
+
+    <section class="cars-section">
+        <h2>Available Cars</h2>
+        <div class="car-list">
+            {% for car in available_cars %}
+            <div class="car">
+                <img src="{{ car.image_url }}" alt="{{ car.name }}">
+                <h3>{{ car.name }}</h3>
+                <p>Price: ₹{{ car.price_per_day }}/day</p>
+                <button onclick="window.location.href='/book/{{ car.id }}'" class="book-btn">Book Now</button>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="cars-section">
+        <h2>Unavailable Cars</h2>
+        <div class="car-list">
+            {% for car in unavailable_cars %}
+            <div class="car unavailable">
+                <img src="{{ car.image_url }}" alt="{{ car.name }}">
+                <h3>{{ car.name }}</h3>
+                <p>Currently Unavailable</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,293 @@
+/* ✅ General Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* ✅ Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    padding: 15px 50px;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #f39c12;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons .btn {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+.login-btn {
+    background: #3498db;
+    color: white;
+}
+
+.signup-btn {
+    background: #2ecc71;
+    color: white;
+}
+
+.admin-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.logout-btn {
+    background: #95a5a6;
+    color: white;
+}
+
+.auth-buttons .btn:hover {
+    opacity: 0.8;
+}
+
+/* ✅ Hero Section */
+.hero {
+    text-align: center;
+    background: url('/static/images/hero-bg.jpg') no-repeat center center/cover;
+    padding: 100px 20px;
+    color: #f39c12;
+    font-size: 1.5em;
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+/* ✅ Why Choose Us */
+.why-choose-us {
+    text-align: center;
+    padding: 50px;
+    background-color: #ffffff;
+}
+
+.why-choose-us h2 {
+    color: #2c3e50;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.feature {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature img {
+    width: 100px;
+}
+
+.feature h3 {
+    color: #e67e22;
+}
+
+/* ✅ Locations */
+.locations {
+    text-align: center;
+    padding: 50px;
+    background: #ecf0f1;
+}
+
+.locations h2 {
+    color: #2c3e50;
+}
+
+.location-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 0;
+}
+
+.location-list li {
+    background: #2c3e50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* ✅ Available Cars */
+.cars-section {
+    text-align: center;
+    padding: 50px;
+}
+
+#car-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.car {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 250px;
+}
+
+.car:hover {
+    transform: scale(1.05);
+}
+
+.car img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.book-btn {
+    background: #e67e22;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.book-btn:hover {
+    background: #d35400;
+}
+
+/* ✅ Footer */
+.footer {
+    background: #2c3e50;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    width: 30%;
+}
+
+.footer-section h3 {
+    color: #f39c12;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    padding: 5px 0;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid #f39c12;
+    padding-top: 10px;
+    background: #2c3e50
+}
+
+/* ✅ Call-To-Action (Get Started) */
+.cta-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: #2c3e50;
+    color: white;
+}
+
+.cta-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #f39c12;
+}
+
+.cta-section p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #e67e22;
+    color: white;
+    font-size: 1.2em;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.cta-btn:hover {
+    background: #d35400;
+    transform: scale(1.05);
+}
+
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+    .features, .location-list, #car-list, .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature, .car, .footer-section {
+        width: 80%;
+    }
+}

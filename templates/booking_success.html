@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed</title>
+    <style>
+        /* ✅ General Page Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+            overflow: hidden;
+        }
+
+        /* ✅ Animated Container */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 50%;
+            margin: auto;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInPopup 1s ease-out forwards;
+        }
+
+        /* ✅ Confirmation Icon */
+        .checkmark {
+            font-size: 50px;
+            color: #27ae60;
+            display: inline-block;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: scale(0);
+            animation: popIn 0.6s ease-out 0.5s forwards, glow 1.5s infinite alternate;
+        }
+
+        /* ✅ Button Styling */
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 18px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #217dbb;
+        }
+
+        /* ✅ Animations */
+        @keyframes fadeInPopup {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(39, 174, 96, 0.8);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(39, 174, 96, 1);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="checkmark">✔</div>
+        <h2>Booking Confirmed!</h2>
+        <p>Thank you for choosing Vrooom Rentals. Your booking has been confirmed.</p>
+        <p>Please visit our location to complete the payment.</p>
+        <p>You will receive a confirmation email with the exact location details you selected.</p>
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+</body>
+</html>

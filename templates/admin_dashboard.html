@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Vrooom Rentals</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Admin Logout Button */
+        .logout-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 5px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #34495e;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-remove {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-remove:hover {
+            background: #c0392b;
+        }
+
+        .btn-update {
+            background: #f1c40f;
+            color: black;
+        }
+
+        .btn-update:hover {
+            background: #d4ac0d;
+        }
+
+        .btn-paid {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-paid:hover {
+            background: #219150;
+        }
+
+        /* Forms */
+        form {
+            margin-top: 10px;
+        }
+
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Add Car Section */
+        .add-car {
+            margin-top: 30px;
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid #f39c12;
+            padding-top: 20px;
+            background: #2c3e50;
+            text-align: center;
+            color: white;
+            padding:30px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        Admin Dashboard - Vrooom Rentals
+        <a href="/admin_logout" class="logout-btn">Logout</a>
+    </div>
+
+    <div class="container">
+
+        <!-- ✅ Manage Bookings -->
+        <h3>All Bookings</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Car</th>
+                <th>Days</th>
+                <th>Amount</th>
+                <th>Payment Status</th>
+                <th>Actions</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.user_name }}</td>
+                <td>{{ booking.car_name }}</td>
+                <td>{{ booking.days }}</td>
+                <td>₹{{ booking.amount }}</td>
+                <td>{{ booking.status }}</td>
+                <td>
+                    {% if booking.status == "Pending" %}
+                    <form action="/update_payment/{{ booking.id }}" method="POST">
+                        <button type="submit" class="btn btn-paid">Mark as Paid</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- ✅ Manage Cars -->
+        <h3>All Cars</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Car Name</th>
+                <th>Price Per Day</th>
+                <th>Image</th>
+                <th>Availability</th>
+                <th>Actions</th>
+            </tr>
+            {% for car in cars %}
+            <tr>
+                <td>{{ car.id }}</td>
+                <td>{{ car.name }}</td>
+                <td>₹{{ car.price_per_day }}</td>
+                <td><img src="{{ car.image_url }}" alt="{{ car.name }}" width="100"></td>
+                <td>{{ car.availability }}</td>
+                <td>
+                    <form action="/remove_car/{{ car.id }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-remove">Remove</button>
+                    </form>
+                    <form action="/update_car/{{ car.id }}" method="POST">
+    <input type="number" name="price_per_day" placeholder="New Price (Optional)">
+    <select name="availability">
+        <option value="Available" {% if car.availability == 'Available' %}selected{% endif %}>Available</option>
+        <option value="Not Available" {% if car.availability == 'Not Available' %}selected{% endif %}>Not Available</option>
+    </select>
+    <button type="submit" class="btn btn-update">Update</button>
+</form>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- ✅ Add New Car -->
+        <h3>Add New Car</h3>
+        <div class="add-car">
+            <form action="/add_car" method="POST">
+                <label>Car Name:</label>
+                <input type="text" name="name" required>
+
+                <label>Price Per Day:</label>
+                <input type="number" name="price_per_day" required>
+
+                <label>Image URL:</label>
+                <input type="text" name="image_url" required>
+
+                <label>Availability:</label>
+                <select name="availability">
+                    <option value="Available">Available</option>
+                    <option value="Not Available">Not Available</option>
+                </select>
+
+                <button type="submit" class="btn btn-update">Add Car</button>
+            </form>
+        </div>
+
+    </div>
+   <div class="footer-bottom">
+            <p>© 2024 Vrooom Rentals. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+</body>
+</html>

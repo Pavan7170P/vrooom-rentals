@@ -1,0 +1,133 @@
+/* ✅ Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f4f7fc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* ✅ Navigation Bar */
+.navbar {
+    width: 100%;
+    background: #2c3e50;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navbar .logo h1 {
+    color: #fff;
+    font-size: 24px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #1abc9c;
+}
+
+/* ✅ Authentication Section */
+.auth-section {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 80px; /* Offset for fixed navbar */
+}
+
+.auth-section h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* ✅ Form Styles */
+.auth-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-section label {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+.auth-section input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.auth-section input:focus {
+    border-color: #1abc9c;
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+}
+
+/* ✅ Submit Button */
+.btn {
+    background: #1abc9c;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #16a085;
+}
+
+/* ✅ Links */
+.auth-section p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.auth-section p a {
+    color: #1abc9c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-section p a:hover {
+    text-decoration: underline;
+}

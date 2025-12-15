@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Vrooom Rentals</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?luxury-car,city') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Admin Login Container */
+        .admin-login-container {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            width: 350px;
+            text-align: center;
+            color: white;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #f1c40f;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn {
+            background: #f1c40f;
+            color: black;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #d4ac0d;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 15px;
+            color: #f1c40f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ✅ Admin Login Form -->
+    <div class="admin-login-container">
+        <h2>Admin Login</h2>
+        <form action="/admin_login" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter admin email">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Enter admin password">
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+
+</body>
+</html>
